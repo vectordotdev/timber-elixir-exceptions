@@ -13,7 +13,8 @@ defmodule Timber.Exceptions.MixProject do
   #
   # See `mix help hex.publish` for more information about
   # the options used in this section
-  defp package() do [
+  defp package() do
+    [
       name: :timber_exceptions,
       files: ["lib", "mix.exs", "README*", "LICENSE*"],
       maintainers: ["Ben Johnson", "David Antaramian"],

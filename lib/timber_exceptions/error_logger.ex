@@ -101,7 +101,7 @@ defmodule Timber.Exceptions.ErrorLogger do
     # to avoid dropping too many consecutive messages before checking the message
     # count again. The number of messages to process during this is tracked under the
     # `:skip_count` key in the state.
-# The pid for the `Logger` process is also stored in state so messages can be
+    # The pid for the `Logger` process is also stored in state so messages can be
     # sent from this process to a pid instead of a named process. This is to avoid
     # crashing when sending messages to a named process.
 
