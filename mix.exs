@@ -30,7 +30,7 @@ defmodule Timber.Exceptions.MixProject do
       app: :timber_exceptions,
       name: "Timber Exceptions",
       version: @version,
-      elixir: "~> 1.4",
+      elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
       description: @project_description,
       source_url: @source_url,
@@ -113,7 +113,7 @@ defmodule Timber.Exceptions.MixProject do
       {:credo, "~> 0.10", only: [:dev, :test]},
       {:dialyxir, "~> 0.5", only: [:dev, :test]},
       {:earmark, "~> 1.2", only: [:dev]},
-      {:ex_doc, "~> 0.18.0", only: [:dev]},
+      {:ex_doc, "~> 0.19.0", only: [:dev]},
       {:excoveralls, "~> 0.10", only: [:dev, :test]}
     ]
   end
