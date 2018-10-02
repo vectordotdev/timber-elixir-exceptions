@@ -23,4 +23,15 @@ defmodule Timber.Exceptions.TestHelpers do
 
     Msgpax.pack!([map])
   end
+
+  def add_in_memory_logger_backend(pid) when is_pid(pid) do
+    {:ok, _pid} = Logger.add_backend(Timber.LoggerBackends.InMemory)
+    Logger.configure_backend(Timber.LoggerBackends.InMemory, callback_pid: pid)
+    :ok = Logger.remove_backend(:console)
+
+    ExUnit.Callbacks.on_exit(fn ->
+      :ok = Logger.remove_backend(Timber.LoggerBackends.InMemory)
+      {:ok, _pid} = Logger.add_backend(:console)
+    end)
+  end
 end

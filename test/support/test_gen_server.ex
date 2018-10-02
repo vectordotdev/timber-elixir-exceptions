@@ -1,6 +1,4 @@
 defmodule Timber.Exceptions.TestGenServer do
-  @moduledoc false
-
   use GenServer
 
   def start_link(pid) do
