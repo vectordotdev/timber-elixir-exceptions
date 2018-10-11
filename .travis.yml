@@ -11,6 +11,7 @@ script:
   - if [ "$TRAVIS_ELIXIR_VERSION" = "1.7.3" ]; then mix format --check-formatted --dry-run; fi
   - MIX_ENV=test mix compile && mix test
   - if [ "$TRAVIS_ELIXIR_VERSION" = "1.7.3" ] && [ "$TRAVIS_OTP_RELEASE" = "21.0" ]; then mix dialyzer; fi
+  - if [ "$TRAVIS_ELIXIR_VERSION" = "1.7.3" ] && [ "$TRAVIS_OTP_RELEASE" = "21.0" ]; then mix coveralls.travis; fi
 
 cache:
   directories:
