@@ -230,7 +230,7 @@ defmodule Timber.Exceptions.TranslatorTest do
     assert elem(call, 2) == %{
              "Authorization" => "Basic YXBpX2tleQ==",
              "Content-Type" => "application/msgpack",
-             "User-Agent" => "Timber Elixir/#{vsn} (HTTP)"
+             "User-Agent" => "timber-elixir/#{vsn}"
            }
 
     encoded_body = event_entry_to_msgpack(entry)

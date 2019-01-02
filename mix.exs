@@ -105,15 +105,14 @@ defmodule Timber.Exceptions.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:timber, "~> 3.0.0-alpha.2"},
+      {:timber, "~> 3.0"},
 
       #
       # Tooling
       #
 
-      {:credo, "~> 0.10", only: [:dev, :test]},
+      {:credo, "~> 1.0", only: [:dev, :test]},
       {:dialyxir, "~> 0.5", only: [:dev, :test]},
-      {:earmark, "~> 1.2", only: [:dev]},
       {:ex_doc, "~> 0.19.0", only: [:dev]},
       {:excoveralls, "~> 0.10", only: [:dev, :test]}
     ]
