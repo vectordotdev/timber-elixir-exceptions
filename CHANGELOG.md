@@ -10,6 +10,8 @@ Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## 2.0.0
+
 ### Added
 
   - Added a Logger translator to handle exception capturing with Elixir 1.7 and
@@ -21,4 +23,4 @@ Versioning](http://semver.org/spec/v2.0.0.html).
   - Removed the Erlang `:error_logger` handler in favor of the Elixir 1.7 Logger
     translator
     
-[Unreleased]: https://github.com/timberio/timber-elixir-exceptions/compare/v2.x...HEAD
+[Unreleased]: https://github.com/timberio/timber-elixir-exceptions/compare/v2.0.0...HEAD

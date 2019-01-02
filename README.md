@@ -17,15 +17,21 @@ as dependencies in `mix.exs`:
 def deps do
   [
     {:timber, "~> 3.0"},
-    {:timber_exceptions, "~> 1.0"}
+    {:timber_exceptions, "~> 2.0"}
   ]
 end
 ```
 
 Then run `mix deps.get`.
 
-Inside your Elixir application's `start/2` callback, call
-`Timber.Exceptions.add_handler()`. The rest is handled for you!
+Add the translator in your application's start function:
+```elixir
+# ...
+:ok = Logger.add_translator({Timber.Exceptions.Translator, :translate})
+
+opts = [strategy: :one_for_one, name: MyApp.Supervisor]
+Supervisor.start_link(children, opts)
+```
 
 ## License
 
