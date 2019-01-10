@@ -10,7 +10,7 @@ in your Elixir software.
 
 ## Installation
 
-Ensure that you have both `:timber` (version 3.0.0 or later) and `:timber_ecto` listed
+Ensure that you have both `:timber` (version 3.0.0 or later) and `:timber_exceptions` listed
 as dependencies in `mix.exs`:
 
 ```elixir
