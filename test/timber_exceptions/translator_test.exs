@@ -8,7 +8,6 @@ defmodule Timber.Exceptions.TranslatorTest do
   alias Timber.LoggerBackends.InMemory
   alias Timber.Exceptions.{TestGenServer, SimpleTestGenServer}
   alias Timber.LoggerBackends.HTTP
-  alias Timber.Events.ErrorEvent
 
   defp add_timber_logger_translator() do
     :ok = Logger.add_translator({Timber.Exceptions.Translator, :translate})
@@ -31,10 +30,12 @@ defmodule Timber.Exceptions.TranslatorTest do
 
     [{:error, _pid, {Logger, _msg, _ts, metadata}}] = :gen_event.call(Logger, InMemory, :get)
 
-    assert %ErrorEvent{
-             name: "RuntimeError",
-             message: "Task Error",
-             backtrace: [_line1, _line2, _line3]
+    assert %{
+             error: %{
+               name: "RuntimeError",
+               message: "Task Error",
+               backtrace: [_line1, _line2, _line3]
+             }
            } = Keyword.get(metadata, :event)
 
     assert Keyword.get(metadata, :pid) == pid
@@ -51,9 +52,11 @@ defmodule Timber.Exceptions.TranslatorTest do
 
     [{:error, _pid, {Logger, _msg, _ts, metadata}}] = :gen_event.call(Logger, InMemory, :get)
 
-    assert %ErrorEvent{
-             name: "ErlangError",
-             message: message
+    assert %{
+             error: %{
+               name: "ErlangError",
+               message: message
+             }
            } = Keyword.get(metadata, :event)
 
     assert message =~ ~r/Erlang error: "I am throwing"/i
@@ -72,9 +75,11 @@ defmodule Timber.Exceptions.TranslatorTest do
 
     [{:error, _pid, {Logger, _msg, _ts, metadata}}] = :gen_event.call(Logger, InMemory, :get)
 
-    assert %ErrorEvent{
-             name: "ErlangError",
-             message: message
+    assert %{
+             error: %{
+               name: "ErlangError",
+               message: message
+             }
            } = Keyword.get(metadata, :event)
 
     assert message =~ ~r/Erlang error: :bad_exit/i
@@ -93,10 +98,12 @@ defmodule Timber.Exceptions.TranslatorTest do
 
     [{:error, _pid, {Logger, _msg, _ts, metadata}}] = :gen_event.call(Logger, InMemory, :get)
 
-    assert %ErrorEvent{
-             message: "bad argument in arithmetic expression",
-             name: "ArithmeticError",
-             backtrace: [_, _, _, _]
+    assert %{
+             error: %{
+               message: "bad argument in arithmetic expression",
+               name: "ArithmeticError",
+               backtrace: [_, _, _, _]
+             }
            } = Keyword.get(metadata, :event)
 
     assert Keyword.get(metadata, :pid) == pid
@@ -114,10 +121,12 @@ defmodule Timber.Exceptions.TranslatorTest do
 
     [{:error, _pid, {Logger, _msg, _ts, metadata}}] = :gen_event.call(Logger, InMemory, :get)
 
-    assert %ErrorEvent{
-             message: "bad argument in arithmetic expression",
-             name: "ArithmeticError",
-             backtrace: [_, _, _, _]
+    assert %{
+             error: %{
+               message: "bad argument in arithmetic expression",
+               name: "ArithmeticError",
+               backtrace: [_, _, _, _]
+             }
            } = Keyword.get(metadata, :event)
 
     assert Keyword.get(metadata, :pid) == pid
@@ -134,10 +143,12 @@ defmodule Timber.Exceptions.TranslatorTest do
 
     [{:error, _pid, {Logger, _msg, _ts, metadata}}] = :gen_event.call(Logger, InMemory, :get)
 
-    assert %ErrorEvent{
-             message: "raised error",
-             name: "RuntimeError",
-             backtrace: [_, _, _, _]
+    assert %{
+             error: %{
+               message: "raised error",
+               name: "RuntimeError",
+               backtrace: [_, _, _, _]
+             }
            } = Keyword.get(metadata, :event)
 
     assert Keyword.get(metadata, :pid) == pid
@@ -183,16 +194,18 @@ defmodule Timber.Exceptions.TranslatorTest do
 
     [{:error, _pid, {Logger, _msg, _ts, metadata}}] = :gen_event.call(Logger, InMemory, :get)
 
-    assert %ErrorEvent{
-             backtrace: [
-               %{
-                 file: "test/timber_exceptions/translator_test.exs",
-                 function: _,
-                 line: _
-               }
-             ],
-             message: "Error",
-             name: "RuntimeError"
+    assert %{
+             error: %{
+               backtrace: [
+                 %{
+                   file: "test/timber_exceptions/translator_test.exs",
+                   function: _,
+                   line: _
+                 }
+               ],
+               message: "Error",
+               name: "RuntimeError"
+             }
            } = Keyword.get(metadata, :event)
   end
 
@@ -202,8 +215,7 @@ defmodule Timber.Exceptions.TranslatorTest do
     add_in_memory_logger_backend(self())
 
     Task.start(fn ->
-      Timber.Context.add(%{}, %{a: :b})
-      |> Timber.CurrentContext.save()
+      Timber.CurrentContext.add(%{a: :b})
 
       raise "Task Error"
     end)

@@ -45,8 +45,11 @@ defmodule Timber.Exceptions.Translator do
   def transform_metadata(metadata) do
     with {:ok, crash_reason} <- Keyword.fetch(metadata, :crash_reason),
          {:ok, event} <- get_error_event(crash_reason) do
-      Timber.Event.to_metadata(event)
-      |> Keyword.merge(metadata)
+      event = %{
+        error: Map.from_struct(event)
+      }
+
+      Keyword.merge([event: event], metadata)
     else
       _ ->
         metadata
