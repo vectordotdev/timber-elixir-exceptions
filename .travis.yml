@@ -8,6 +8,11 @@ otp_release:
   - 20.3
   - 19.3
 
+matrix:
+  exclude:
+    - otp_release: 19.3
+      elixir: 1.8.0
+
 script:
   - if [ "$TRAVIS_ELIXIR_VERSION" = "1.7.4" ]; then mix format --check-formatted --dry-run; fi
   - MIX_ENV=test mix compile && mix test
