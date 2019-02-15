@@ -10,28 +10,35 @@ in your Elixir software.
 
 ## Installation
 
-Ensure that you have both `:timber` (version 3.0.0 or later) and `:timber_exceptions` listed
+1. Ensure that you have both `:timber` (version 3.0.0 or later) and `:timber_exceptions` listed
 as dependencies in `mix.exs`:
 
-```elixir
-def deps do
-  [
-    {:timber, "~> 3.0"},
-    {:timber_exceptions, "~> 2.0"}
-  ]
-end
-```
+    ```elixir
+    def deps do
+      [
+        {:timber, "~> 3.0"},
+        {:timber_exceptions, "~> 2.0"}
+      ]
+    end
+    ```
 
-Then run `mix deps.get`.
+2. Run `mix deps.get` to install the dependencies.
 
-Add the translator in your application's start function:
-```elixir
-# ...
-:ok = Logger.add_translator({Timber.Exceptions.Translator, :translate})
+3. Add the translator in your application's `start/2` function:
 
-opts = [strategy: :one_for_one, name: MyApp.Supervisor]
-Supervisor.start_link(children, opts)
-```
+    ```elixir
+    defmodule MyApp
+      use Applictation
+      
+      def start(_type, _args) do
+        # ADD THE FOLLOW LINE:
+        :ok = Logger.add_translator({Timber.Exceptions.Translator, :translate})
+
+        opts = [strategy: :one_for_one, name: MyApp.Supervisor]
+        Supervisor.start_link(children, opts)
+      end
+    end
+    ```
 
 ## License
 
