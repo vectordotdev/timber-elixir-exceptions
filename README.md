@@ -31,7 +31,7 @@ as dependencies in `mix.exs`:
       use Applictation
       
       def start(_type, _args) do
-        # ADD THE FOLLOW LINE:
+        # ADD THE FOLLOWING LINE:
         :ok = Logger.add_translator({Timber.Exceptions.Translator, :translate})
 
         opts = [strategy: :one_for_one, name: MyApp.Supervisor]
