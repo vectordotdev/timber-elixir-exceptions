@@ -215,7 +215,7 @@ defmodule Timber.Exceptions.TranslatorTest do
     add_in_memory_logger_backend(self())
 
     Task.start(fn ->
-      Timber.CurrentContext.add(%{a: :b})
+      Timber.LocalContext.add(%{a: :b})
 
       raise "Task Error"
     end)
