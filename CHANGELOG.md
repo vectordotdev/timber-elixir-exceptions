@@ -29,4 +29,4 @@ Versioning](http://semver.org/spec/v2.0.0.html).
     translator
     
 [Unreleased]: https://github.com/timberio/timber-elixir-exceptions/compare/v2.1.0...HEAD
-[2.1.0]: https://github.com/timberio/timber-elixir-exceptions/compare/v2.0.0...2.1.0
+[2.1.0]: https://github.com/timberio/timber-elixir-exceptions/compare/v2.0.0...v2.1.0
