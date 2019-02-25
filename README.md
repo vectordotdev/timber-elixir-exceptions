@@ -16,7 +16,7 @@ as dependencies in `mix.exs`:
     ```elixir
     def deps do
       [
-        {:timber, "~> 3.0"},
+        {:timber, "~> 3.1"},
         {:timber_exceptions, "~> 2.0"}
       ]
     end
