@@ -1,7 +1,7 @@
 defmodule Timber.Exceptions.MixProject do
   use Mix.Project
 
-  @version "2.0.0"
+  @version "2.1.0"
   @source_url "https://github.com/timberio/timber-elixir-exceptions"
   @homepage_url "https://github.com/timberio/timber-elixir-exceptions"
   @project_description """
@@ -105,7 +105,7 @@ defmodule Timber.Exceptions.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:timber, "~> 3.0"},
+      {:timber, "~> 3.1"},
 
       #
       # Tooling

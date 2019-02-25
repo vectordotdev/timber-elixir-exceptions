@@ -10,6 +10,11 @@ Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.1.0] - 2019-02-25
+
+### Changed
+  - Removed use of Timber-specific custom context and events in favor of simple maps
+
 ## 2.0.0 - 2019-01-02
 
 ### Added
@@ -23,4 +28,5 @@ Versioning](http://semver.org/spec/v2.0.0.html).
   - Removed the Erlang `:error_logger` handler in favor of the Elixir 1.7 Logger
     translator
     
-[Unreleased]: https://github.com/timberio/timber-elixir-exceptions/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/timberio/timber-elixir-exceptions/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/timberio/timber-elixir-exceptions/compare/v2.0.0...2.1.0
