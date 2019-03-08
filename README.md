@@ -27,7 +27,7 @@ as dependencies in `mix.exs`:
 3. Add the translator in your application's `start/2` function:
 
     ```elixir
-    defmodule MyApp
+    defmodule MyApp do
       use Applictation
       
       def start(_type, _args) do
